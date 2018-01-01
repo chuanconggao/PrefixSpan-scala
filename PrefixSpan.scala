@@ -40,9 +40,7 @@ class Miner(val db: Array[Array[Int]]) {
       }
     }
 
-    val initMatches = new Matches
-    initMatches.appendAll((0 until db.length).map((_, 0)))
-    mine(Vector(), initMatches)
+    mine(Vector(), (0 until db.length).map((_, 0)).to[ArrayBuffer])
 
     results
   }
@@ -69,13 +67,9 @@ class Miner(val db: Array[Array[Int]]) {
       }
     }
 
-    val initMatches = new Matches
-    initMatches.appendAll((0 until db.length).map((_, 0)))
-    mine(Vector(), initMatches)
+    mine(Vector(), (0 until db.length).map((_, 0)).to[ArrayBuffer])
 
-    val results = new Results
-    results.appendAll(heap.dequeueAll.reverse)
-    results
+    heap.dequeueAll.reverse.to[ArrayBuffer]
   }
 }
 
